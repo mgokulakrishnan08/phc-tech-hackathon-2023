@@ -5,7 +5,7 @@ from .models import *
 class AdmissionForm(forms.ModelForm):
     class Meta:
         model = admission
-        exclude = ['discharge_time','status', 'report','phc_id']
+        exclude = ['discharge_time','status', 'report','phc_id','discharge_status']
 
 class DischargeForm(forms.ModelForm):
     class Meta:
