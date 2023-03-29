@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'PHC.apps.PhcConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> e8abd92240a69a94ac8c3d28c2cc54a9c4f256d1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -118,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'PHC/static/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
