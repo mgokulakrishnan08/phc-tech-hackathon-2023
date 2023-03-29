@@ -40,8 +40,8 @@ class admission(models.Model):
     mobile = models.IntegerField()
     cause = models.CharField(max_length=50)
     admission_time = models.DateTimeField(auto_now=False, auto_now_add=True)
-    discharge_time = models.DateTimeField(auto_now=False, auto_now_add=False)
-    status = models.CharField(max_length=50)
+    discharge_time = models.DateTimeField(auto_now=False, auto_now_add=False,null=True)
+    discharge_status = models.CharField(max_length=50)
     report = models.FileField(upload_to="pdf")
 
 
