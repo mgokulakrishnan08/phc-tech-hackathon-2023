@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  {% load static %}
+
+<title>Home-PrimaryHealthCareCenter </title>
+
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/body.css' %}">
+<link rel="stylesheet" href="{% static 'css/Search.css' %}">
+
+<style>
+  .table{
+    width:50%;    
+  }
+  h1{
+    margin-left: 30%;
+    padding-top: 20px;
+  }
+
+
+</style>
+
+
+
+
+
+</head>
+<body>
+
+
+<header >
+    {% csrf_token %}
+
+    <div>
+        <img src="{% static 'img/Tamil.png' %}" alt="Emplem" class="float-left header-img">
+
+        <h1>Primary Health Care Centers</h1>
+        <img src="" alt="" class="float-right header-img">
+    </div>
+    <nav class="navbar navbar-expand-lg navigation float-bottom">
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ">
+            <a class="nav-item nav-link" href=""></span></a>
+            
+          </div>
+        </div>
+
+      </nav>
+</header>
+
+<br><br>
+
+<div class="main">
+    <p class="sign" align="center">Search</p><hr>
+    <form class="form1">
+    
+      <input class="un " type="text" align="center" placeholder="Pincode" name="pincode" >
+      <button class="submit" align="center">Search</button>
+    </form>
+</div>
+
+<div class="container">
+<table class="table">
+  
+    {% for i in obj %}
+    <tr>
+      <td><a href="/details/{{i.phc_id}}/">{{i.phc_name}}</a></td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+<br><br><br>
+
+<footer class="page-footer">
+<small>&copy; Copyright 2023 .All Rights Reserved</small> 
+</footer>
+
+</body>
+</html>
