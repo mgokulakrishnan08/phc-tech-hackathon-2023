@@ -41,71 +41,55 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ">
-            <a class="nav-item nav-link active" href="/{{code}}/home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/{{code}}/home">Home <span class="sr-only">(current)</span></a>
             
             <a class="nav-item nav-link" href="/{{code}}/register">Admission</a>
             <a class="nav-item nav-link" href="/{{code}}/register">Discharge</a>
-            <a class="nav-item nav-link " href="/{{code}}/doctor_details">Doctor details</a>
-            
-
+            <a class="nav-item nav-link active" href="/{{code}}/doctor_details">Doctor details</a>
+           
 
           </div>
         </div>
         <a class="btn btn-info float-right"  href="/"><b>Log Out</b></a>
+        
       </nav>
 </header>
-
-<div>
- 
-    <table class="table">
-            <tr>
-              <td>Hospital Name: </td>
-              <td>{{x.phc_name}} </td>
-            </tr>
-            <tr>
-              <td>Head Doctor Name: </td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>PHC id: </td>
-              <td>{{x.phc_id}} </td>
-            </tr>
-            <tr>
-              <td> Address:</td>
-              <td>{{x.street}}, <br>{{x.city}}, <br> {{x.state}}</td>
-            </tr>
-            <tr>
-              <td> Pincode:</td>
-              <td>{{x.pincode}} </td>
-            </tr>
-            
-            <tr>
-              <td> Mobile:</td>
-              <td>{{x.mobile}} </td>
-            </tr>
-            <tr>
-                <td> No. of patients:</td>
-                <td> </td>
-              </tr>
-              <tr>
-                <td> No. of Beds:</td>
-                <td>{{x.no_of_beds}} </td>
-              </tr>
+<div class="container">
+  <br>
+  <br>
+  <br>
+    <table class="table table-stripped table-bordered">
+      <thead class="thead-dark" >
+        <tr>
+          <th>NAME
+          </th>
+          <th>MAIL ID</th>
+          <th>PHONE NO</th>
+        </tr>
+      </thead>
+    
   
-    </table>
-  
-   
+        {% for i in doctor %}
+        <tr>
+          <td>{{i.medician_id.name}}</td>
+          <td>{{i.medician_id.email}}</td>
+          <td>{{i.medician_id.mobile}}</td>
+        </tr>
+        {% endfor %}
   
     
-</div>
-
-
-<br><br>
-
-
-<footer class="page-footer">
-<small>&copy; Copyright 2023 .All Rights Reserved</small> 
-</footer>
-
-</body>
-</html>
+    </table>
+    
+    
+    </div>
+  
+    
+    <br><br>
+  
+  
+     <footer>
+     <small>&copy; Copyright 2022 Minstry Of Labour And Welfare.All Rights Reserved</small> 
+     </footer>
+  
+  </body>
+  </html>
