@@ -5,6 +5,8 @@ from django.db import models
 
 class PHC(models.Model):
     phc_id = models.CharField(primary_key=True,max_length=50)
+    phc_name = models.CharField(max_length=100, null=True)
+    summary = models.CharField(max_length=500, null=True)
     password = models.CharField(max_length=50)
     street = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
@@ -12,6 +14,7 @@ class PHC(models.Model):
     pincode = models.IntegerField()
     mobile = models.IntegerField()
     no_of_beds = models.IntegerField()
+    gmap_link = models.CharField(max_length=100, null=True)
 
 
 class medician(models.Model):
