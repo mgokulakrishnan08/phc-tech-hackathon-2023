@@ -6,6 +6,16 @@ from datetime import datetime
 
 
 # Create your views here.
+# public views
+def phome(request):
+    return render(request, 'PHC/phome.html')
+
+def phc_details(request):
+    code ='PHC123456'
+    obj= PHC.objects.get(phc_id=code)
+    doctor=designation.objects.filter(phc_id=code)
+    return render(request, 'PHC/phc_details.html',{'obj':obj,'doctor':doctor})
+
 # admin views
 def add_phc(request):
     if request.method == 'POST':
@@ -50,16 +60,6 @@ def home(request,code):
     x=PHC.objects.get(phc_id=code)
     return render(request, 'PHC/home.html',{'x':x,'code':code})
    
-
-   
-def phome(request):
-    return render(request, 'PHC/phome.html')
-
-def phc_details(request):
-    code ='PHC123456'
-    obj= PHC.objects.get(phc_id=code)
-    doctor=designation.objects.filter(phc_id=code)
-    return render(request, 'PHC/phc_details.html',{'obj':obj,'doctor':doctor})
    
 
 def admission(request,code):

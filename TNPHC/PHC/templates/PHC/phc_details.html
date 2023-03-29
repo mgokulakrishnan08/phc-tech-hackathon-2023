@@ -42,7 +42,7 @@
 }
 .one p{
     text-align: left;
-    padding-left: 3%;
+    padding-left: 15%;
     font-size: 22px;
     
     
@@ -68,6 +68,9 @@ form{
     text-align: justify;
     padding: 5% 2% 3% 2%;
     tab-size: 2;
+}
+.code{
+  display: flex;
 }
 </style>
 
@@ -115,6 +118,7 @@ form{
         <tr>
           <th>NAME
           </th>
+          <th>ROLE</th>
           <th>MAIL ID</th>
           <th>PHONE NO</th>
         </tr>
@@ -122,6 +126,7 @@ form{
       {% for i in doctor %}
         <tr>
           <td>{{i.medician_id.name}}</td>
+          <td>{{i.role}}</td>
           <td>{{i.medician_id.email}}</td>
           <td>{{i.medician_id.mobile}}</td>
         </tr>
@@ -138,10 +143,16 @@ form{
         <div class="phoneno">
        <p>Phoneno:  <p class="input">{{obj.mobile}}</p></p></div>
        <div class="phoneno">
-       <p>Address:<p class="input">{{obj.street}},{{obj.city}},{{obj.state}}</p></p></div> 
-      </div>
+       <p>Address:<p class="input">{{obj.street}},<br>{{obj.city}},<br>{{obj.state}}</p></p>
+       
+      </div> 
+      <div class="code">
+      <p>Pincode:<p class="input">{{obj.pincode}}</p></p>
+        </div>
+    </div>
+      
       <div class="col two">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.733757306278!2d78.5975100139379!3d10.67776196392894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baa63d82dd6a5e3%3A0x38be13a41bef7d48!2sGovernment%20College%20of%20Engineering%20-%20Srirangam!5e0!3m2!1sen!2sin!4v1680090106367!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="{{obj.gmap_link}}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       </div>
       </div>
