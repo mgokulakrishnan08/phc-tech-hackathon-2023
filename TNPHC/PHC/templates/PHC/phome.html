@@ -56,10 +56,24 @@
     <p class="sign" align="center">Search</p><hr>
     <form class="form1">
     
-      <input class="un " type="text" align="center" placeholder="Pincode" >
+      <input class="un " type="text" align="center" placeholder="Pincode" name="pincode" >
       <button class="submit" align="center">Search</button>
-     
     </form>
+</div>
+
+<div class="container">
+<table class="table">
+  
+    {% for i in obj %}
+    <tr>
+      <td><a href="/details/{{i.phc_id}}/">{{i.phc_name}}</a></td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+<br><br><br>
+
 <footer class="page-footer">
 <small>&copy; Copyright 2023 .All Rights Reserved</small> 
 </footer>

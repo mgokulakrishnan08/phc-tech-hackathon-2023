@@ -8,10 +8,14 @@ from datetime import datetime
 # Create your views here.
 # public views
 def phome(request):
-    return render(request, 'PHC/phome.html')
+    obj=''
+    if request.GET:
+        pincode =request.GET.dict()['pincode']
+        obj = PHC.objects.filter(pincode=pincode)
 
-def phc_details(request):
-    code ='PHC123456'
+    return render(request, 'PHC/phome.html',{'obj':obj})
+
+def phc_details(request, code):
     obj= PHC.objects.get(phc_id=code)
     doctor=designation.objects.filter(phc_id=code)
     return render(request, 'PHC/phc_details.html',{'obj':obj,'doctor':doctor})
