@@ -20,3 +20,5 @@ def home(request,code):
 
     return render(request, 'PHC/home.html',{'x':x})
    
+def phome(request):
+    return render(request, 'PHC/phome.html')
