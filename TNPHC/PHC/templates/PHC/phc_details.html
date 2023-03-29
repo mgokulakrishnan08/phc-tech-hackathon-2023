@@ -19,8 +19,9 @@
   }
   h5{
     text-align: left;
-    padding-left: 110px;
-    padding-bottom: px;
+    padding-left: 95px;
+   
+
   }
 
   .con{
@@ -34,16 +35,20 @@
 }
 
 .one{
-    
-    padding-top: 50px;
-    padding-left: 20px;
-    
- 
+    margin-top: 40px;
+    padding-top: 10px;
+    padding-left: 1px;
+    border: 2px solid black;
+    border-radius: 20px;
+    width:30px;
+    height: 220px;
+    margin-right: 100px;
+    margin-left: 100px;
 }
 .one p{
     text-align: left;
     padding-left: 15%;
-    font-size: 22px;
+    font-size: 19px;
     
     
 }
@@ -51,14 +56,14 @@
 .phoneno{
    
     display: flex;
-    padding-bottom: 20px;
-
+    
+    
     
 }
 .two{
     border-left: 1px solid black;
-    height: 300px;
-    margin-bottom: 100px;
+   
+    padding-bottom: 10px;
 }
 form{
 
@@ -136,20 +141,21 @@ form{
 </div>
   <br><br>
     <div class="container">
-      <h5><b><u>Address:</u></b> </h5>
+      <h5><b><u>Contact Details:</u></b> </h5>
       <div class="cont">
       <div class="row">
-      <div class="col one" >
+       <div class="col one" >
         <div class="phoneno">
-       <p>Phoneno:  <p class="input">{{obj.mobile}}</p></p></div>
-       <div class="phoneno">
-       <p>Address:<p class="input">{{obj.street}},<br>{{obj.city}},<br>{{obj.state}}</p></p>
-       
-      </div> 
-      <div class="code">
-      <p>Pincode:<p class="input">{{obj.pincode}}</p></p>
+         <p>Phoneno:  <p class="input">{{obj.mobile}}</p></p>
         </div>
-    </div>
+        <div class="phoneno">
+         <p>Address:<p class="input">{{obj.street}},<br>{{obj.city}},<br>{{obj.state}}</p></p> 
+        </div> 
+        <div class="code">
+         <p >Pincode:<p class="input">{{obj.pincode}}</p></p>
+        </div>
+      </div>
+   
       
       <div class="col two">
         <iframe src="{{obj.gmap_link}}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -171,7 +177,7 @@ form{
     <br><br>
     
      <footer>
-     <small>&copy; Copyright 2022 Minstry Of Labour And Welfare.All Rights Reserved</small> 
+     <small>&copy; Copyright 2023.All Rights Reserved</small> 
      </footer>
   
   </body>

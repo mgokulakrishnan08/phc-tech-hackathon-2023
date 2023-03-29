@@ -53,7 +53,7 @@ def login(request):
         phc_id=request.GET.dict()['phc_id']
         password=request.GET.dict()['password']
         if password==PHC.objects.get(phc_id=phc_id).password:
-            return redirect(f'{phc_id}/') 
+            return redirect(f'/{phc_id}/') 
             
 
     return render(request, 'PHC/login.html')
