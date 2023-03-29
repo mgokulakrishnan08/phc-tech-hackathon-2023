@@ -76,7 +76,7 @@ def Admission(request,code):
             return HttpResponse('<center>added</center>')
     else:
         form = AdmissionForm()
-    return render(request, 'PHC/admission.html',{'form':form})
+    return render(request, 'PHC/admission.html',{'form':form,'code':code})
    
 def discharge(request,code):
     if request.method == 'POST':
@@ -91,16 +91,16 @@ def discharge(request,code):
             return HttpResponse('<center>added</center>')
     else:
         form = DischargeForm()
-    return render(request, 'PHC/discharge.html',{'form':form})
+    return render(request, 'PHC/discharge.html',{'form':form,'code':code})
    
 def doctor_details(request,code):
     doctor=designation.objects.filter(phc_id=code)
-    return render(request, 'PHC/doctor_details.html',{'doctor':doctor})
+    return render(request, 'PHC/doctor_details.html',{'doctor':doctor,'code':code})
 
 def admission_details(request,code):
     obj=admission.objects.filter(phc_id=code, discharge_time__isnull=True)
-    return render(request, 'PHC/admission_details.html',{'obj':obj})
+    return render(request, 'PHC/admission_details.html',{'obj':obj,'code':code})
 
 def discharge_details(request,code):
     obj=admission.objects.filter(phc_id=code, discharge_time__isnull=False)
-    return render(request, 'PHC/discharge_details.html',{'obj':obj})
+    return render(request, 'PHC/discharge_details.html',{'obj':obj,'code':code})
