@@ -3,5 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('',login)
+    path('',login),
+    path('<str:code>/',home)
 ]
