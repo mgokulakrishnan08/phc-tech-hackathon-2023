@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!doctype html>
 <html>
 <head>
@@ -41,10 +42,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ">
-            <a class="nav-item nav-link active" href="/{{code}}/home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link " href="/{{code}}/home">Home <span class="sr-only">(current)</span></a>
             
-            <a class="nav-item nav-link" href="/{{code}}/admission">Admission</a>
-            <a class="nav-item nav-link" href="/{{code}}/discharge">Discharge</a>
+            <a class="nav-item nav-link " href="/{{code}}/admission">Admission</a>
+            <a class="nav-item nav-link active" href="/{{code}}/discharge">Discharge</a>
             <a class="nav-item nav-link" href="/{{code}}/add_course">Doctor details</a>
             
 
@@ -55,54 +56,18 @@
       </nav>
 </header>
 
-<div>
- 
-    <table class="table">
-            <tr>
-              <td>Hospital Name: </td>
-              <td>{{x.phc_name}} </td>
-            </tr>
-            <tr>
-              <td>Head Doctor Name: </td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>PHC id: </td>
-              <td>{{x.phc_id}} </td>
-            </tr>
-            <tr>
-              <td> Address:</td>
-              <td>{{x.street}}, <br>{{x.city}}, <br> {{x.state}}</td>
-            </tr>
-            <tr>
-              <td> Pincode:</td>
-              <td>{{x.pincode}} </td>
-            </tr>
-            
-            <tr>
-              <td> Mobile:</td>
-              <td>{{x.mobile}} </td>
-            </tr>
-            <tr>
-                <td> No. of patients:</td>
-                <td> </td>
-              </tr>
-              <tr>
-                <td> No. of Beds:</td>
-                <td>{{x.no_of_beds}} </td>
-              </tr>
-  
-    </table>
-    
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-primary">submit</button>
+    </form>
 </div>
 
-
-<br><br>
-
-
 <footer class="page-footer">
-<small>&copy; Copyright 2023 .All Rights Reserved</small> 
-</footer>
-
+    <small>&copy; Copyright 2023 .All Rights Reserved</small> 
+    </footer>
+ 
+  
 </body>
 </html>
