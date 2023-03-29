@@ -46,9 +46,9 @@ def login(request):
 
 def home(request,code):
     x=PHC.objects.get(phc_id=code)
-    return render(request, 'PHC/home.html',{'x':x})
-
-
-
-
+    return render(request, 'PHC/home.html',{'x':x,'code':code})
    
+
+def doctor_details(request,code):
+    doctor=designation.objects.filter(phc_id=code)
+    return render(request, 'PHC/doctor_details.html',{'doctor':doctor})
