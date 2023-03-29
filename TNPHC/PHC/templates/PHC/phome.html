@@ -6,7 +6,8 @@
 <title>Home-PrimaryHealthCareCenter </title>
 
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/layout.css' %}">
+<link rel="stylesheet" href="{% static 'css/body.css' %}">
+<link rel="stylesheet" href="{% static 'css/Search.css' %}">
 
 <style>
   .table{
@@ -29,6 +30,8 @@
 
 
 <header >
+    {% csrf_token %}
+
     <div>
         <img src="{% static 'img/Tamil.png' %}" alt="Emplem" class="float-left header-img">
 
@@ -41,10 +44,6 @@
           <div class="navbar-nav ">
             <a class="nav-item nav-link" href=""></span></a>
             
->
-            
-
-
           </div>
         </div>
 
@@ -53,7 +52,14 @@
 
 <br><br>
 
-
+<div class="main">
+    <p class="sign" align="center">Search</p><hr>
+    <form class="form1">
+    
+      <input class="un " type="text" align="center" placeholder="Pincode" >
+      <button class="submit" align="center">Search</button>
+     
+    </form>
 <footer class="page-footer">
 <small>&copy; Copyright 2023 .All Rights Reserved</small> 
 </footer>
