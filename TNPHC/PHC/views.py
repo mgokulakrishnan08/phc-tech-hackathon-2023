@@ -101,7 +101,9 @@ def Admission(request,code):
 def discharge(request,code):
     if request.method == 'POST':
         form = DischargeForm(request.POST, request.FILES)
+        print(form.is_valid())
         if form.is_valid():
+            print(form.cleaned_data['admission_no'])
             obj=admission.objects.get(admission_no=form.cleaned_data['admission_no'])
             obj.discharge_status=form.cleaned_data['discharge_status']
             obj.report=form.cleaned_data['report']
