@@ -41,44 +41,57 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ">
-            <a class="nav-item nav-link " href="/{{code}}/home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/{{code}}/home">Home <span class="sr-only">(current)</span></a>
             
-            <a class="nav-item nav-link" href="/{{code}}/admission">Admission</a>
-            <a class="nav-item nav-link" href="/{{code}}/discharge">Discharge</a>
-            <a class="nav-item nav-link active" href="/{{code}}/doctor_details">Doctor details</a>
+            <a class="nav-item nav-link" href="/{{code}}/register">Admission</a>
+            <a class="nav-item nav-link" href="/{{code}}/register">Discharge</a>
+            <a class="nav-item nav-link " href="/{{code}}/doctor_details">Doctor details</a>
             <a class="nav-item nav-link " href="/{{code}}/admission_details">Admission details</a>
-            <a class="nav-item nav-link " href="/{{code}}/discharge_details">Discharge details</a>
+            <a class="nav-item nav-link active" href="/{{code}}/discharge-details">Discharge details</a>
            
 
           </div>
-          <a class="btn btn-info float-right"  href="/"><b>Log Out</b></a>
-        </nav>
+        </div>
+        <a class="btn btn-info float-right"  href="/"><b>Log Out</b></a>
+        
+      </nav>
 </header>
 <div class="container">
   <br>
   <br>
   <br>
-    <table class="table table-stripped table-bordered">
-      <thead class="thead-dark" >
-        <tr>
-          <th>NAME
-          </th>
-          <th>MAIL ID</th>
-          <th>PHONE NO</th>
-        </tr>
-      </thead>
-    
+  <table class="table table-stripped table-bordered">
+    <thead class="thead-dark" >
+      <tr>
+        <th>ADMISSION NO
+        </th>
+        <th>ADMISSION TIME</th>
+        
+        <th>NAME</th>
+        <th>CAUSE</th>
+        <th>DISCHARGE STATUS</th>
+        <th>DISCHARGE TIME</th>
+        <th>REPORT</th>
+
+      </tr>
+    </thead>
   
-        {% for i in doctor %}
-        <tr>
-          <td>{{i.medician_id.name}}</td>
-          <td>{{i.medician_id.email}}</td>
-          <td>{{i.medician_id.mobile}}</td>
-        </tr>
-        {% endfor %}
+
+      {% for i in obj %}
+      <tr>
+        <td>{{i.admission_no}}</td>
+        <td>{{i.admission_time}}</td>
+        <td>{{i.patient_name}}</td>
+        <td>{{i.cause}}</td>
+        <td>{{i.discharge_status}}</td>
+        <td>{{i.discharge_time}}</td>
+        <td>{{i.report}}</td>
+      </tr>
+      {% endfor %} 
+
   
-    
-    </table>
+  </table>
+      
     
     
     </div>

@@ -86,9 +86,7 @@ def home(request,code):
    
    
 
-   
-
-def admission(request,code):
+def Admission(request,code):
     if request.method == 'POST':
         form = AdmissionForm(request.POST, request.FILES)
         if form.is_valid():
@@ -118,3 +116,11 @@ def discharge(request,code):
 def doctor_details(request,code):
     doctor=designation.objects.filter(phc_id=code)
     return render(request, 'PHC/doctor_details.html',{'doctor':doctor,'code':code})
+
+def admission_details(request,code):
+    obj=admission.objects.filter(phc_id=code, discharge_time__isnull=True)
+    return render(request, 'PHC/admission_details.html',{'obj':obj,'code':code})
+
+def discharge_details(request,code):
+    obj=admission.objects.filter(phc_id=code, discharge_time__isnull=False)
+    return render(request, 'PHC/discharge_details.html',{'obj':obj,'code':code})
