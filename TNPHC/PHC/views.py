@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.db.models import Subquery
 from django.http import HttpResponse
 from .models import *
 from .forms import *
@@ -20,12 +21,13 @@ def phc_details(request, code):
     doctor=designation.objects.filter(phc_id=code)
     return render(request, 'PHC/phc_details.html',{'obj':obj,'doctor':doctor})
 
+
+
 # admin views
 def phc_admin(request):
-    choice=''
     if request.GET:
         choice=request.GET.dict()['choice']
-        print(choice)      
+        return redirect(f'/{choice}/analyze')
     no_of_phc=PHC.objects.all().count()
     no_of_active_inpatients=admission.objects.filter(discharge_time__isnull=True).count()
     no_of_admissions=admission.objects.all().count()
@@ -33,9 +35,41 @@ def phc_admin(request):
     dict={'no_of_phc':no_of_phc,
            'no_of_active_inpatients':no_of_active_inpatients,
              'no_of_admissions':no_of_admissions,
-             'no_of_doctors':no_of_doctors,
-             'choice':choice}         
+             'no_of_doctors':no_of_doctors}         
     return render(request, 'PHC/phc_admin.html', dict)
+
+def analyze(request, choice):
+    x=''
+    if choice==1:
+        if request.GET:
+            from_date = request.GET.dict()['from'] 
+            to = request.GET.dict()['to']
+            print(from_date)
+            #in particular yr
+            x = admission.objects.filter(admission_time__gte=from_date, admission_time__lte=to)
+    elif choice==2:
+        if request.GET:
+            pincode = request.GET.dict()['pincode'] 
+            from_date = request.GET.dict()['from'] 
+            to = request.GET.dict()['to']
+            print(from_date)
+            #in particular yr
+            xx = PHC.objects.filter(pincode=pincode)
+            x = admission.objects.filter(phc_id__in=Subquery(xx.values('phc_id')), admission_time__gte=from_date, admission_time__lte=to)
+
+    elif choice==3:
+        if request.GET:
+            phc_id = request.GET.dict()['phc_id'] 
+            from_date = request.GET.dict()['from'] 
+            to = request.GET.dict()['to']
+            print(from_date)
+            #in particular yr
+            x = admission.objects.filter(phc_id=phc_id, admission_time__gte=from_date, admission_time__lte=to)
+
+ 
+
+
+    return render(request, 'PHC/analyze.html',{'choice':choice,'x':x})
 
 
 def add_phc(request):
@@ -146,3 +180,5 @@ def admission_details(request,code):
 def discharge_details(request,code):
     obj=admission.objects.filter(phc_id=code, discharge_time__isnull=False)
     return render(request, 'PHC/discharge_details.html',{'obj':obj,'code':code})
+
+
