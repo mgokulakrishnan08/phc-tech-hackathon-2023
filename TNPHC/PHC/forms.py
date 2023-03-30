@@ -13,7 +13,7 @@ class AdmissionForm(forms.ModelForm):
 class DischargeForm(forms.ModelForm):
      class Meta:
          model = admission
-         fields=['admission_no','discharge_status','report']
+         fields=['admission_no','discharge_status']
 
 
 # class DischargeForm(forms.Form):

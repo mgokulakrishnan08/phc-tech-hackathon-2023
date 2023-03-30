@@ -122,7 +122,7 @@ def discharge(request,code):
             print(form.cleaned_data['admission_no'])
             obj=admission.objects.get(admission_no=form.cleaned_data['admission_no'])
             obj.discharge_status=form.cleaned_data['discharge_status']
-            obj.report=form.cleaned_data['report']
+            #obj.report=form.cleaned_data['report']
             obj.discharge_time=datetime.now()
             obj.save()
 
