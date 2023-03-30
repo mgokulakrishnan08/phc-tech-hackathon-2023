@@ -3,9 +3,17 @@ from .models import *
 
 
 class AdmissionForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AdmissionForm,self).__init__(*args, **kwargs)
+        TYPE_SELECT=(('Male','Male'),('Female','Female'),('Others','Others'))
+        self.fields['gender'] = forms.ChoiceField(choices=TYPE_SELECT,widget=forms.RadioSelect())
+      
+
     class Meta:
-        model = admission
-        exclude = ['discharge_time','status', 'report','phc_id','discharge_status']
+        model=admission
+        exclude=['phc_id']
+
+        
 
 
 
@@ -36,7 +44,7 @@ class PHCForm(forms.ModelForm):
 class DOCTORForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(DOCTORForm,self).__init__(*args, **kwargs)
-        TYPE_SELECT=(('Male','Male'),('Female','Female'))
+        TYPE_SELECT=(('Male','Male'),('Female','Female'),'Others','Others')
         self.fields['gender'] = forms.ChoiceField(choices=TYPE_SELECT,widget=forms.RadioSelect())
       
 
