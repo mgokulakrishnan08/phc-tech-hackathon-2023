@@ -22,9 +22,21 @@ def phc_details(request, code):
 
 # admin views
 def phc_admin(request):
-
-                    
-    return render(request, 'PHC/phc_admin.html')
+    choice=''
+    if request.GET:
+        print('ss')
+        choice=request.GET.dict()['choice']
+        print(choice)
+    no_of_phc=PHC.objects.all().count()
+    no_of_active_inpatients=admission.objects.filter(discharge_time__isnull=True).count()
+    no_of_admissions=admission.objects.all().count()
+    no_of_doctors=medician.objects.all().count()
+    dict={'no_of_phc':no_of_phc,
+           'no_of_active_inpatients':no_of_active_inpatients,
+             'no_of_admissions':no_of_admissions,
+             'no_of_doctors':no_of_doctors}
+               
+    return render(request, 'PHC/phc_admin.html', dict)
 
 
 def add_phc(request):
@@ -86,7 +98,7 @@ def home(request,code):
 
    
 
-def admission(request,code):
+def Admission(request,code):
     if request.method == 'POST':
         form = AdmissionForm(request.POST, request.FILES)
         if form.is_valid():

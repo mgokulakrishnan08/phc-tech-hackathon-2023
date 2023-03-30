@@ -13,7 +13,7 @@ urlpatterns = [
 
     path('login/',login),
     path('<str:code>/',home),
-    path('<str:code>/admission',admission),
+    path('<str:code>/admission',Admission),
     path('<str:code>/discharge',discharge),
     path('<str:code>/doctor_details',doctor_details)
 

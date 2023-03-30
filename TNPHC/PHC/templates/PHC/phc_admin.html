@@ -18,6 +18,15 @@
     margin-left: 30%;
     padding-top: 20px;
   }
+  .radio{
+    display: inline;
+    padding: 10px;
+    
+  }
+
+  .radio-inline{
+    padding:20px
+  }
 
 
 </style>
@@ -59,7 +68,39 @@
 
 
 
+
 <br><br>
+<div>
+ 
+  <table class="table">
+          <tr>
+            <td>Total No of PHCs: </td>
+            <td>{{no_of_phc}}</td>
+          </tr>
+          <tr>
+            <td>Total No of Active In-Patients: </td>
+            <td>{{no_of_active_inpatients}}</td>
+          </tr>
+          <tr>
+            <td>Total No of Admissions: </td>
+            <td>{{no_of_admissions}}</td>
+          </tr>
+          <tr>
+            <td> No of Medicians:</td>
+            <td>{{no_of_doctors}}</td>
+          </tr>
+          
+
+  </table>
+
+  <form class="radio-inline radio" method="get">
+    Search by:<label class="radio-inline"><input type="radio" name="choice" id="btn1" value="1"> All details</label>
+    <label class="radio-inline"><input type="radio" name="choice" id="btn2" value="2"> Location</label>
+    <label class="radio-inline"><input type="radio" name="choice" id="btn3" value="3"> PHC</label>
+    <button type="submit" class="btn btn-primary">start searching</button>
+  </form>
+  
+</div>
 
 
 <footer class="page-footer">
