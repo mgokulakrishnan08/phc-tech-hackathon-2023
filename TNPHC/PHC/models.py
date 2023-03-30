@@ -38,6 +38,7 @@ class admission(models.Model):
     phc_id = models.ForeignKey(PHC, on_delete=models.CASCADE)
     patient_name = models.CharField(max_length=50,null=True)
     age = models.IntegerField(null=True)
+    gender = models.CharField(max_length=11,null=True)
     guardian_name = models.CharField(max_length=50,null=True)
     street = models.CharField(max_length=50,null=True)
     city = models.CharField(max_length=50,null=True)
