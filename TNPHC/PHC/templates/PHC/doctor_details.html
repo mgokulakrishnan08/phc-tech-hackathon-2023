@@ -61,8 +61,10 @@
     <table class="table table-stripped table-bordered">
       <thead class="thead-dark" >
         <tr>
+          <th>SI NO.</th>
           <th>NAME
           </th>
+          <th>ROLE</th>
           <th>MAIL ID</th>
           <th>PHONE NO</th>
         </tr>
@@ -71,7 +73,9 @@
   
         {% for i in doctor %}
         <tr>
+          <td>{{forloop.counter}}</td>
           <td>{{i.medician_id.name}}</td>
+          <td>{{i.role}}</td>
           <td>{{i.medician_id.email}}</td>
           <td>{{i.medician_id.mobile}}</td>
         </tr>
@@ -88,7 +92,7 @@
   
   
      <footer>
-     <small>&copy; Copyright 2022 Minstry Of Labour And Welfare.All Rights Reserved</small> 
+     <small>&copy; Copyright 2023.All Rights Reserved</small> 
      </footer>
   
   </body>

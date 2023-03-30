@@ -82,7 +82,9 @@ def login(request):
 
 def home(request,code):
     x=PHC.objects.get(phc_id=code)
-    return render(request, 'PHC/home.html',{'x':x,'code':code})
+    doc=designation.objects.get(phc_id=code,role="Dean")
+    no_of_patients=admission.objects.filter(phc_id=code,discharge_time__isnull=True).count()
+    return render(request, 'PHC/home.html',{'x':x,'code':code,'doc':doc,'no_of_patients':no_of_patients})
    
    
 

@@ -43,8 +43,8 @@
           <div class="navbar-nav ">
             <a class="nav-item nav-link" href="/{{code}}">Home <span class="sr-only">(current)</span></a>
             
-            <a class="nav-item nav-link" href="/{{code}}/register">Admission</a>
-            <a class="nav-item nav-link" href="/{{code}}/register">Discharge</a>
+            <a class="nav-item nav-link" href="/{{code}}/admissionr">Admission</a>
+            <a class="nav-item nav-link" href="/{{code}}/discharge">Discharge</a>
             <a class="nav-item nav-link " href="/{{code}}/doctor_details">Doctor details</a>
             <a class="nav-item nav-link " href="/{{code}}/admission_details">Admission details</a>
             <a class="nav-item nav-link active" href="/{{code}}/discharge-details">Discharge details</a>
@@ -62,7 +62,9 @@
   <br>
   <table class="table table-stripped table-bordered">
     <thead class="thead-dark" >
+      
       <tr>
+        <th>SI NO.</th>
         <th>ADMISSION NO
         </th>
         <th>ADMISSION TIME</th>
@@ -79,6 +81,7 @@
 
       {% for i in obj %}
       <tr>
+        <td>{{forloop.counter}}</td>
         <td>{{i.admission_no}}</td>
         <td>{{i.admission_time}}</td>
         <td>{{i.patient_name}}</td>

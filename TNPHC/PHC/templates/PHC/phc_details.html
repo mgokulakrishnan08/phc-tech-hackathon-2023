@@ -121,6 +121,7 @@ form{
     <table class="table table-stripped table-bordered">
       <thead class="thead-dark" >
         <tr>
+          <th>SI NO.</th>
           <th>NAME
           </th>
           <th>ROLE</th>
@@ -130,6 +131,7 @@ form{
       </thead>
       {% for i in doctor %}
         <tr>
+          <td>{{forloop.counter}}</td>
           <td>{{i.medician_id.name}}</td>
           <td>{{i.role}}</td>
           <td>{{i.medician_id.email}}</td>
