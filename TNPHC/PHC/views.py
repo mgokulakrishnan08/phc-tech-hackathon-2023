@@ -6,7 +6,39 @@ from datetime import datetime
 
 
 # Create your views here.
+# public views
+def phome(request):
+    obj=''
+    if request.GET:
+        pincode =request.GET.dict()['pincode']
+        obj = PHC.objects.filter(pincode=pincode)
+
+    return render(request, 'PHC/phome.html',{'obj':obj})
+
+def phc_details(request, code):
+    obj= PHC.objects.get(phc_id=code)
+    doctor=designation.objects.filter(phc_id=code)
+    return render(request, 'PHC/phc_details.html',{'obj':obj,'doctor':doctor})
+
 # admin views
+def phc_admin(request):
+    choice=''
+    if request.GET:
+        print('ss')
+        choice=request.GET.dict()['choice']
+        print(choice)
+    no_of_phc=PHC.objects.all().count()
+    no_of_active_inpatients=admission.objects.filter(discharge_time__isnull=True).count()
+    no_of_admissions=admission.objects.all().count()
+    no_of_doctors=medician.objects.all().count()
+    dict={'no_of_phc':no_of_phc,
+           'no_of_active_inpatients':no_of_active_inpatients,
+             'no_of_admissions':no_of_admissions,
+             'no_of_doctors':no_of_doctors}
+               
+    return render(request, 'PHC/phc_admin.html', dict)
+
+
 def add_phc(request):
     if request.method == 'POST':
             form = PHCForm(request.POST, request.FILES)
@@ -32,6 +64,20 @@ def add_doctor(request):
 
 
 
+def add_designation(request):
+    if request.method == 'POST':
+            form = DesignationForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('<center>Designation  added</center>')
+
+    else:
+        form = DesignationForm()
+
+    return render(request, 'PHC/add_designation.html',{'form':form})
+
+
+
 
 # PHC views
 def login(request):
@@ -39,7 +85,7 @@ def login(request):
         phc_id=request.GET.dict()['phc_id']
         password=request.GET.dict()['password']
         if password==PHC.objects.get(phc_id=phc_id).password:
-            return redirect(f'{phc_id}/') 
+            return redirect(f'/{phc_id}/') 
             
 
     return render(request, 'PHC/login.html')
@@ -48,12 +94,15 @@ def login(request):
 
 def home(request,code):
     x=PHC.objects.get(phc_id=code)
-    return render(request, 'PHC/home.html',{'x':x,'code':code})
+    doc=designation.objects.get(phc_id=code,role="Dean")
+    no_of_patients=admission.objects.filter(phc_id=code,discharge_time__isnull=True).count()
+    return render(request, 'PHC/home.html',{'x':x,'code':code,'doc':doc,'no_of_patients':no_of_patients})
+   
    
 
    
 
-def admission(request,code):
+def Admission(request,code):
     if request.method == 'POST':
         form = AdmissionForm(request.POST, request.FILES)
         if form.is_valid():
@@ -63,23 +112,33 @@ def admission(request,code):
             return HttpResponse('<center>added</center>')
     else:
         form = AdmissionForm()
-    return render(request, 'PHC/admission.html',{'form':form})
+    return render(request, 'PHC/admission.html',{'form':form,'code':code})
    
 def discharge(request,code):
     if request.method == 'POST':
         form = DischargeForm(request.POST, request.FILES)
+        print(form.is_valid())
         if form.is_valid():
+            print(form.cleaned_data['admission_no'])
             obj=admission.objects.get(admission_no=form.cleaned_data['admission_no'])
             obj.discharge_status=form.cleaned_data['discharge_status']
-            obj.report=form.cleaned_data['report']
+            #obj.report=form.cleaned_data['report']
             obj.discharge_time=datetime.now()
             obj.save()
 
             return HttpResponse('<center>added</center>')
     else:
         form = DischargeForm()
-    return render(request, 'PHC/discharge.html',{'form':form})
+    return render(request, 'PHC/discharge.html',{'form':form,'code':code})
    
 def doctor_details(request,code):
     doctor=designation.objects.filter(phc_id=code)
-    return render(request, 'PHC/doctor_details.html',{'doctor':doctor})
+    return render(request, 'PHC/doctor_details.html',{'doctor':doctor,'code':code})
+
+def admission_details(request,code):
+    obj=admission.objects.filter(phc_id=code, discharge_time__isnull=True)
+    return render(request, 'PHC/admission_details.html',{'obj':obj,'code':code})
+
+def discharge_details(request,code):
+    obj=admission.objects.filter(phc_id=code, discharge_time__isnull=False)
+    return render(request, 'PHC/discharge_details.html',{'obj':obj,'code':code})

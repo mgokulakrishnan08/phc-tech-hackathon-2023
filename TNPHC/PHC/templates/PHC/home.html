@@ -41,17 +41,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ">
-            <a class="nav-item nav-link active" href="/{{code}}/home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="/{{code}}">Home <span class="sr-only">(current)</span></a>
             
             <a class="nav-item nav-link" href="/{{code}}/admission">Admission</a>
             <a class="nav-item nav-link" href="/{{code}}/discharge">Discharge</a>
             <a class="nav-item nav-link " href="/{{code}}/doctor_details">Doctor details</a>
+            <a class="nav-item nav-link " href="/{{code}}/admission_details">Admission details</a>
+            <a class="nav-item nav-link " href="/{{code}}/discharge_details">Discharge details</a>
+            
             
 
 
           </div>
         </div>
-        <a class="btn btn-info float-right"  href="/"><b>Log Out</b></a>
+        <a class="btn btn-info float-right"  href="/login/"><b>Log Out</b></a>
       </nav>
 </header>
 
@@ -64,7 +67,7 @@
             </tr>
             <tr>
               <td>Head Doctor Name: </td>
-              <td></td>
+              <td>{{doc.medician_id.name}}</td>
             </tr>
             <tr>
               <td>PHC id: </td>
@@ -85,7 +88,7 @@
             </tr>
             <tr>
                 <td> No. of patients:</td>
-                <td> </td>
+                <td> {{no_of_patients}}</td>
               </tr>
               <tr>
                 <td> No. of Beds:</td>

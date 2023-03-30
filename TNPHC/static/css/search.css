@@ -1,19 +1,19 @@
 body {
-    background-color: #ccdefa;
+   
     font-family: 'Ubuntu', sans-serif;
 }
 
 .main {
     background-color: #ccdefa;
     width: 400px;
-    height: 400px;
+    padding-bottom: 15px;
     margin: 7em auto;
     border-radius: 1.5em;
-    box-shadow: 0px 11px 35px 2px #0c0c0c;
+    box-shadow: 0 0 5px 1px black;
 }
 
 .sign {
-    padding-top: 40px;
+    padding-top: 5px;
     color:#373375;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
@@ -21,51 +21,30 @@ body {
 }
 
 .un {
-width: 76%;
+width: 45%;
 color: rgb(38, 50, 56);
 font-weight: 700;
 font-size: 14px;
 letter-spacing: 1px;
 background: rgba(136, 126, 126, 0.04);
-padding: 10px 20px;
-
+padding: 5px 10px;
 border-radius: 20px;
 outline: none;
 box-sizing: border-box;
 border: 2px solid rgba(0, 0, 0, 0.40);
 margin-bottom: 50px;
-margin-left: 46px;
+margin-left: 27%;
 text-align: center;
-margin-bottom: 27px;
+margin-bottom: 20px;
 font-family: 'Ubuntu', sans-serif;
 }
 
 form.form1 {
-    padding-top: 40px;
-}
-
-.pass {
-        width: 76%;
-color: rgb(38, 50, 56);
-font-weight: 700;
-font-size: 14px;
-letter-spacing: 1px;
-background: rgba(136, 126, 126, 0.04);
-padding: 10px 20px;
-border: none;
-border-radius: 20px;
-outline: none;
-box-sizing: border-box;
-border: 2px solid rgba(0, 0, 0, 0.40);
-margin-bottom: 50px;
-margin-left: 46px;
-text-align: center;
-margin-bottom: 27px;
-font-family: 'Ubuntu', sans-serif;
+    padding-top: 10px;
 }
 
 
-.un:focus, .pass:focus {
+.un:focus{
     border: 3px solid rgba(0, 0, 0, 0.80) !important;
     
 }
@@ -86,16 +65,6 @@ font-family: 'Ubuntu', sans-serif;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 
-.forgot {
-    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-    color: #121213 !important;
-    padding-top: 15px;
-}
-.forgot:hover{
-    font-Size :110%;
-
-}
-
 a {
     text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
     color:#373375;
@@ -111,5 +80,5 @@ a {
 .main hr{
     width:80%;
     align-items: center;
-
+    
 }

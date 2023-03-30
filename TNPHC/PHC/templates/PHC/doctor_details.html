@@ -41,18 +41,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ">
-            <a class="nav-item nav-link" href="/{{code}}/home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link " href="/{{code}}">Home <span class="sr-only">(current)</span></a>
             
-            <a class="nav-item nav-link" href="/{{code}}/register">Admission</a>
-            <a class="nav-item nav-link" href="/{{code}}/register">Discharge</a>
+            <a class="nav-item nav-link" href="/{{code}}/admission">Admission</a>
+            <a class="nav-item nav-link" href="/{{code}}/discharge">Discharge</a>
             <a class="nav-item nav-link active" href="/{{code}}/doctor_details">Doctor details</a>
+            <a class="nav-item nav-link " href="/{{code}}/admission_details">Admission details</a>
+            <a class="nav-item nav-link " href="/{{code}}/discharge_details">Discharge details</a>
            
-
           </div>
-        </div>
-        <a class="btn btn-info float-right"  href="/"><b>Log Out</b></a>
-        
-      </nav>
+          </div>
+          <a class="btn btn-info float-right"  href="/login/"><b>Log Out</b></a>
+        </nav>
 </header>
 <div class="container">
   <br>
@@ -61,8 +61,10 @@
     <table class="table table-stripped table-bordered">
       <thead class="thead-dark" >
         <tr>
+          <th>SI NO.</th>
           <th>NAME
           </th>
+          <th>ROLE</th>
           <th>MAIL ID</th>
           <th>PHONE NO</th>
         </tr>
@@ -71,7 +73,9 @@
   
         {% for i in doctor %}
         <tr>
+          <td>{{forloop.counter}}</td>
           <td>{{i.medician_id.name}}</td>
+          <td>{{i.role}}</td>
           <td>{{i.medician_id.email}}</td>
           <td>{{i.medician_id.mobile}}</td>
         </tr>
@@ -88,7 +92,7 @@
   
   
      <footer>
-     <small>&copy; Copyright 2022 Minstry Of Labour And Welfare.All Rights Reserved</small> 
+     <small>&copy; Copyright 2023.All Rights Reserved</small> 
      </footer>
   
   </body>
