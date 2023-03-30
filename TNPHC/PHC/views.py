@@ -85,14 +85,18 @@ def login(request):
         phc_id=request.GET.dict()['phc_id']
         password=request.GET.dict()['password']
         if password==PHC.objects.get(phc_id=phc_id).password:
-            return redirect(f'/{phc_id}/')
+            return redirect(f'/{phc_id}/') 
+            
+
     return render(request, 'PHC/login.html')
 
 
 
 def home(request,code):
     x=PHC.objects.get(phc_id=code)
-    return render(request, 'PHC/home.html',{'x':x,'code':code})
+    doc=designation.objects.get(phc_id=code,role="Dean")
+    no_of_patients=admission.objects.filter(phc_id=code,discharge_time__isnull=True).count()
+    return render(request, 'PHC/home.html',{'x':x,'code':code,'doc':doc,'no_of_patients':no_of_patients})
    
    
 
@@ -113,7 +117,9 @@ def Admission(request,code):
 def discharge(request,code):
     if request.method == 'POST':
         form = DischargeForm(request.POST, request.FILES)
+        print(form.is_valid())
         if form.is_valid():
+            print(form.cleaned_data['admission_no'])
             obj=admission.objects.get(admission_no=form.cleaned_data['admission_no'])
             obj.discharge_status=form.cleaned_data['discharge_status']
             obj.report=form.cleaned_data['report']
@@ -128,3 +134,11 @@ def discharge(request,code):
 def doctor_details(request,code):
     doctor=designation.objects.filter(phc_id=code)
     return render(request, 'PHC/doctor_details.html',{'doctor':doctor,'code':code})
+
+def admission_details(request,code):
+    obj=admission.objects.filter(phc_id=code, discharge_time__isnull=True)
+    return render(request, 'PHC/admission_details.html',{'obj':obj,'code':code})
+
+def discharge_details(request,code):
+    obj=admission.objects.filter(phc_id=code, discharge_time__isnull=False)
+    return render(request, 'PHC/discharge_details.html',{'obj':obj,'code':code})
