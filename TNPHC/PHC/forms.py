@@ -34,9 +34,18 @@ class PHCForm(forms.ModelForm):
 
     
 class DOCTORForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(DOCTORForm,self).__init__(*args, **kwargs)
+        TYPE_SELECT=(('Male','Male'),('Female','Female'))
+        self.fields['gender'] = forms.ChoiceField(choices=TYPE_SELECT,widget=forms.RadioSelect())
+      
+
     class Meta:
         model=medician
         fields='__all__'
+
+
+
 
 
 
