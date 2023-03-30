@@ -23,3 +23,14 @@ class DOCTORForm(forms.ModelForm):
     class Meta:
         model=medician
         fields='__all__'
+
+class DesignationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(DesignationForm,self).__init__(*args, **kwargs)
+        self.fields['phc_id'] = forms.CharField(max_length=9)
+        self.fields['medician_id'] = forms.CharField(max_length=9)
+
+
+    class Meta:
+        model=designation
+        fields='__all__'

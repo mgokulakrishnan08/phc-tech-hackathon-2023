@@ -43,9 +43,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ">
-          <a class="nav-item nav-link " href="/Phc_admin">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" href="/Phc_admin">Home <span class="sr-only">(current)</span></a>
           
-          <a class="nav-item nav-link active" href="/add_phc">Add PHC</a>
+          <a class="nav-item nav-link " href="/add_phc">Add PHC</a>
           <a class="nav-item nav-link " href="/add_doctor">Add Doctor</a>
           <a class="nav-item nav-link " href="/add_designation/">Add Designation</a>
           
@@ -57,15 +57,6 @@
     </nav>
 </header>
 
-<div class="container">
-<form method="post">
-  {% csrf_token %}
-{{form|crispy}}
-
-  <button type="submit">submit</button>
-</form>
-
-</div>
 
 
 <br><br>

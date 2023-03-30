@@ -21,6 +21,12 @@ def phc_details(request, code):
     return render(request, 'PHC/phc_details.html',{'obj':obj,'doctor':doctor})
 
 # admin views
+def phc_admin(request):
+
+                    
+    return render(request, 'PHC/phc_admin.html')
+
+
 def add_phc(request):
     if request.method == 'POST':
             form = PHCForm(request.POST, request.FILES)
@@ -46,6 +52,20 @@ def add_doctor(request):
 
 
 
+def add_designation(request):
+    if request.method == 'POST':
+            form = DesignationForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('<center>Designation  added</center>')
+
+    else:
+        form = DesignationForm()
+
+    return render(request, 'PHC/add_designation.html',{'form':form})
+
+
+
 
 # PHC views
 def login(request):
@@ -66,6 +86,8 @@ def home(request,code):
    
    
 
+   
+
 def admission(request,code):
     if request.method == 'POST':
         form = AdmissionForm(request.POST, request.FILES)
@@ -76,7 +98,7 @@ def admission(request,code):
             return HttpResponse('<center>added</center>')
     else:
         form = AdmissionForm()
-    return render(request, 'PHC/admission.html',{'form':form})
+    return render(request, 'PHC/admission.html',{'form':form,'code':code})
    
 def discharge(request,code):
     if request.method == 'POST':
@@ -91,8 +113,8 @@ def discharge(request,code):
             return HttpResponse('<center>added</center>')
     else:
         form = DischargeForm()
-    return render(request, 'PHC/discharge.html',{'form':form})
+    return render(request, 'PHC/discharge.html',{'form':form,'code':code})
    
 def doctor_details(request,code):
     doctor=designation.objects.filter(phc_id=code)
-    return render(request, 'PHC/doctor_details.html',{'doctor':doctor})
+    return render(request, 'PHC/doctor_details.html',{'doctor':doctor,'code':code})
