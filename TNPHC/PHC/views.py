@@ -3,7 +3,8 @@ from django.db.models import Subquery
 from django.http import HttpResponse
 from .models import *
 from .forms import *
-from datetime import datetime    
+from datetime import datetime,date  
+import random  as r
 
 
 # Create your views here.
@@ -15,6 +16,8 @@ def phome(request):
         obj = PHC.objects.filter(pincode=pincode)
 
     return render(request, 'PHC/phome.html',{'obj':obj})
+
+
 
 def phc_details(request, code):
     obj= PHC.objects.get(phc_id=code)
@@ -38,6 +41,8 @@ def phc_admin(request):
              'no_of_doctors':no_of_doctors}         
     return render(request, 'PHC/phc_admin.html', dict)
 
+
+
 def analyze(request, choice):
     x=''
     if choice==1:
@@ -56,7 +61,6 @@ def analyze(request, choice):
             #in particular yr
             xx = PHC.objects.filter(pincode=pincode)
             x = admission.objects.filter(phc_id__in=Subquery(xx.values('phc_id')), admission_time__gte=from_date, admission_time__lte=to)
-
     elif choice==3:
         if request.GET:
             phc_id = request.GET.dict()['phc_id'] 
@@ -76,8 +80,12 @@ def add_phc(request):
     if request.method == 'POST':
             form = PHCForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
-                return HttpResponse('<center>PHC added</center>')
+                obj=form.save(commit=False)
+                phc_id='PHC' + str(r.randint(1000000,9999999))
+                obj.phc_id=phc_id
+                phc_name=form.cleaned_data['phc_name']
+                obj.save()
+                return HttpResponse(f'<center>PHC added<br>PHC ID:{phc_id}<br>PHC NAME:{phc_name}</center>')
 
     else:
         form = PHCForm()
@@ -88,8 +96,12 @@ def add_doctor(request):
     if request.method == 'POST':
             form = DOCTORForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
-                return HttpResponse('<center>Doctor Added</center>')
+                obj=form.save(commit=False)
+                medician_id='DOC' + str(r.randint(1000000,9999999))
+                obj.medician_id=medician_id
+                medician_name=form.cleaned_data['name']
+                obj.save()
+                return HttpResponse(f'<center>Doctor Added<br>MEDICIAN ID:{medician_id}<br>MEDICIAN NAME:{medician_name}</center>')
     else:
         form = DOCTORForm()
                    
@@ -136,9 +148,11 @@ def Admission(request,code):
         form = AdmissionForm(request.POST, request.FILES)
         if form.is_valid():
             obj=form.save(commit=False)
+            admission_no=code[3:] + str(date.today()).replace('-','') + str(r.randint(100,999))
+            obj.admission_no=admission_no
             obj.phc_id=PHC(phc_id=code)
             obj.save()
-            return HttpResponse('<center>added</center>')
+            return HttpResponse(f'<center>Admission entered<br>Admission no.:{admission_no}</center>')
     else:
         form = AdmissionForm()
     return render(request, 'PHC/admission.html',{'form':form,'code':code})
