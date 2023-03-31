@@ -52,7 +52,6 @@ class DOCTORForm(forms.ModelForm):
 
 
 
-
 class DesignationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(DesignationForm,self).__init__(*args, **kwargs)
