@@ -81,7 +81,7 @@ def add_phc(request):
             form = PHCForm(request.POST, request.FILES)
             if form.is_valid():
                 obj=form.save(commit=False)
-                phc_id='PHC' + str(r.randint(1000000,9999999))
+                phc_id='PHC' + str(r.randint(100000,999999))
                 obj.phc_id=phc_id
                 phc_name=form.cleaned_data['phc_name']
                 obj.save()
@@ -97,7 +97,7 @@ def add_doctor(request):
             form = DOCTORForm(request.POST, request.FILES)
             if form.is_valid():
                 obj=form.save(commit=False)
-                medician_id='DOC' + str(r.randint(1000000,9999999))
+                medician_id='DOC' + str(r.randint(100000,999999))
                 obj.medician_id=medician_id
                 medician_name=form.cleaned_data['name']
                 obj.save()
