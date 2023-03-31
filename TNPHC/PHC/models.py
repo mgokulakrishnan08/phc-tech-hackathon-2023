@@ -18,6 +18,8 @@ class PHC(models.Model):
     gmap_link = models.CharField(max_length=1000, null=True)
 
 
+
+
 class medician(models.Model):
     medician_id = models.CharField(primary_key=True,max_length=50)
     name = models.CharField(max_length=50)
