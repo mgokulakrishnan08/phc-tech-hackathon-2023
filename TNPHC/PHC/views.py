@@ -5,6 +5,10 @@ from .models import *
 from .forms import *
 from datetime import datetime,date  
 import random  as r
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
 
 
 # Create your views here.
@@ -52,6 +56,14 @@ def analyze(request, choice):
             print(from_date)
             #in particular yr
             x = admission.objects.filter(admission_time__gte=from_date, admission_time__lte=to)
+            # x=admission.objects.all()
+            df=pd.DataFrame(list(x.values()))
+            # print(df.columns)
+            # print(df[['admission_no','phc_id_id']].value_counts('phc_id_id'))
+            data=df[['admission_no','phc_id_id']].value_counts('phc_id_id')
+            data.plot(kind="bar")
+            plt.show()
+
     elif choice==2:
         if request.GET:
             pincode = request.GET.dict()['pincode'] 
