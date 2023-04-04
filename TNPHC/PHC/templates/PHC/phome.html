@@ -66,6 +66,7 @@ hr{
     {% csrf_token %}
 
     <div>
+      <img src="{% static 'img/phc.png' %}" alt="Logo" class="float-right header-img">
         <img src="{% static 'img/Tamil.png' %}" alt="Emplem" class="float-left header-img">
 
         <h1>Primary Health Care Centers</h1>
@@ -106,6 +107,16 @@ hr{
 
 </table>
 </div>
+<div id="google_translate_element"></div>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script>
+    function googleTranslateElementInit(){
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+      );
+    }
+  </script>
 <br><br><br>
 
 <footer class="page-footer">
